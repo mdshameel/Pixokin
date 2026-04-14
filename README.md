@@ -1,51 +1,42 @@
-# PIXOKIN (Web + API)
+# PIXOKIN Website (Web + API)
 
-PIXOKIN is a collaborative media storage platform where multiple users can share albums, upload photos/videos, and collaborate with role-based access.
+PIXOKIN is now a website-first collaborative media storage platform.
 
-## Project structure
+## This repository now includes only
 
-- `backend/` — Express + MongoDB API and the browser-based web client (`backend/public`).
-- `mobile/` — Existing Expo mobile prototype (optional).
+- `backend/` — Express API + browser web client (`backend/public`)
 
-## What is working now
+## Working website features
 
-### Web app (browser)
+- User signup and login (JWT)
+- Create albums
+- Join albums with invite code
+- View albums list and select an album
+- Upload photos/videos with caption
+- Browse uploaded media in a responsive grid
+- Session persistence in browser storage
 
-- Signup / Login
-- Create album
-- Join album by invite code
-- Album list with role labels
-- Select album and view media grid
-- Upload photo/video with caption
-- Session persistence via `localStorage`
+## Tech stack
 
-### API
+- Node.js + Express
+- MongoDB (Mongoose)
+- Cloudinary (media uploads)
+- Vanilla HTML/CSS/JS frontend served by Express
 
-- JWT auth (`/api/auth/signup`, `/api/auth/login`)
-- Albums (`/api/albums`, `/api/albums/join`)
-- Media upload/list (`/api/media/:albumId/upload`, `/api/media/:albumId`)
-- Profile endpoint (`/api/profile/me`)
-
-## Quick start (web)
+## Run locally
 
 ### 1) Start MongoDB
 
-Run a local MongoDB instance or use MongoDB Atlas.
+Use local MongoDB or Atlas.
 
-### 2) Start backend + web
+### 2) Configure environment
 
 ```bash
 cd backend
 cp .env.example .env
-npm install
-npm run dev
 ```
 
-Open: `http://localhost:4000`
-
-## Environment variables
-
-In `backend/.env.example`:
+Fill values in `.env`:
 
 - `PORT`
 - `MONGODB_URI`
@@ -55,8 +46,29 @@ In `backend/.env.example`:
 - `CLOUDINARY_API_KEY`
 - `CLOUDINARY_API_SECRET`
 
-> Cloudinary values are required for media uploads.
+### 3) Install and run
+
+```bash
+npm install
+npm run dev
+```
+
+Open website at:
+
+- `http://localhost:4000`
+
+## API routes
+
+- `POST /api/auth/signup`
+- `POST /api/auth/login`
+- `GET /api/albums`
+- `POST /api/albums`
+- `POST /api/albums/join`
+- `GET /api/media/:albumId`
+- `POST /api/media/:albumId/upload`
+- `GET /api/profile/me`
 
 ## Notes
 
-- The mobile app remains in `mobile/`, but the main runnable experience is now the web client served from `backend/public`.
+- This repository intentionally excludes the previous Expo mobile prototype.
+- Website files live in `backend/public`.
